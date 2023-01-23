@@ -23,6 +23,7 @@ func TestTerraformAzureVmExample(t *testing.T) {
 		// Variables to pass to our Terraform code using -var options.
 		Vars: map[string]interface{}{
 			"postfix": uniquePostfix,
+			"subscription_id": subscriptionID,
 		},
 	}
 
