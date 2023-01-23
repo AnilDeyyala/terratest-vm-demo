@@ -47,9 +47,9 @@ steps:
       go mod tidy 
       az login -u "$(username)" -p "$(password)" 
       go test -v
-      echo "tested successfully ")"
+      echo "tested successfully"
       go test -v
-      echo "tested successfully "
+      echo "tested successfully"
 
 - task: CmdLine@2
   inputs:
@@ -57,7 +57,7 @@ steps:
       ls 
       cd test
       go test -v
-      echo tested successfully
+      echo "tested successfully"
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
