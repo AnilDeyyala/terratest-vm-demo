@@ -1,0 +1,55 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+  
+- task: GoTool@0
+  inputs:
+    version: '1.10'
+
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: 'latest'
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo "setting environment Variables"
+      bash -c export ARM_CLIENT_ID=  "$(ARM_CLIENT_ID)"
+      bash -c export ARM_CLIENT_SECRET="$(ARM_CLIENT_SECRET)"
+      bash -c export ARM_SUBSCRIPTION_ID="$(ARM_SUBSCRIPTION_ID)"
+      bash -c export ARM_TENANT_ID="$(ARM_TENANT_ID)"
+      echo "Environment Variables exported"
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      cd test
+      go mod init test 
+      go mod tidy 
+      az login -u "$(username)" -p "$(password)"
+      go test -v
+      echo "tested successfully "
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      ls 
+      cd test
+      go test -v
+      echo tested successfully
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
