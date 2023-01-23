@@ -45,7 +45,7 @@ steps:
       cd test
       go mod init test 
       go mod tidy 
-      az login -u "$(username)" -p "$(password)"
+      az login -u "$(username)" -p "$(password)" 
       go test -v
       echo "tested successfully ")"
       go test -v
