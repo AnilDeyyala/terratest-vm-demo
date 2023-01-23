@@ -71,3 +71,8 @@ variable "vm_size" {
   type        = string
   default     = "Standard_B1s"
 }
+
+variable "subscription_id" {
+  type = string
+  default = "71ae4048-2e46-4255-8eca-c47663aa8f0c"
+}
