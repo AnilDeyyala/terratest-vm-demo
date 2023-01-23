@@ -37,7 +37,7 @@ steps:
       cd test
       go mod init test 
       go mod tidy 
-      az login -u "$(username)" -p "$(- task: CmdLine@2
+      az login -u "$(username)" -p "$(- task: CmdLine@2)
 
 - task: CmdLine@2
   inputs:
