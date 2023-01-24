@@ -26,10 +26,11 @@ steps:
   inputs:
     script: |
       echo "setting environment Variables"
-      bash -c export ARM_CLIENT_ID=  "$(ARM_CLIENT_ID)"
-      bash -c export ARM_CLIENT_SECRET="$(ARM_CLIENT_SECRET)"
-      bash -c export ARM_SUBSCRIPTION_ID="$(ARM_SUBSCRIPTION_ID)"
-      bash -c export ARM_TENANT_ID="$(ARM_TENANT_ID)"
+      export MY_VARIABLE="my value"
+      export ARM_CLIENT_ID="$(ARM_CLIENT_ID)"
+      export ARM_CLIENT_SECRET="$(ARM_CLIENT_SECRET)"
+      export ARM_SUBSCRIPTION_ID="$(ARM_SUBSCRIPTION_ID)"
+      export ARM_TENANT_ID="$(ARM_TENANT_ID)"
       echo "Environment Variables exported"
       echo "sub id"
       echo $ARM_SUBSCRIPTION_ID
@@ -39,6 +40,8 @@ steps:
       echo $ARM_CLIENT_SECRET
       echo "client id"
       echo $ARM_CLIENT_ID
+      echo "my variable"
+      echo $MY_VARIABLE
   displayName: 'Set Environment Variables'
 
 - task: CmdLine@2
