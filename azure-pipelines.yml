@@ -31,9 +31,13 @@ steps:
       export ARM_SUBSCRIPTION_ID="$(ARM_SUBSCRIPTION_ID)"
       export ARM_TENANT_ID="$(ARM_TENANT_ID)"
       echo "Environment Variables exported"
+      echo "sub id"
       echo $ARM_SUBSCRIPTION_ID
+      echo "tenant id"
       echo $ARM_TENANT_ID
+      echo "client secret"
       echo $ARM_CLIENT_SECRET
+      echo "client id"
       echo $ARM_CLIENT_ID
   displayName: 'Set Environment Variables'
 
