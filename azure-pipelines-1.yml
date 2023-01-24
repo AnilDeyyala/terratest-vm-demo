@@ -1,0 +1,41 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: GoTool@0
+    inputs:
+      version: '1.19.4'
+  
+  - task: TerraformInstaller@0
+    inputs:
+      terraformVersion: 'latest'
+    
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: 'ARMSvc'
+      scriptType: 'ps'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        Write-Host "Setting environment variables"
+        $env:ARM_CLIENT_ID = "$env:ARM_CLIENT_ID"
+        $env:ARM_CLIENT_SECRET = "$env:ARM_CLIENT_SECRET"
+        $env:ARM_SUBSCRIPTION_ID = "$env:ARM_SUBSCRIPTION_ID"
+        $env:ARM_TENANT_ID = "$env:ARM_TENANT_ID"
+        Write-Host "Environment variables exported"
+        
+        cd test
+        go mod init test 
+        go mod tidy 
+        az login -u "$(username)" -p "$(password)"
+        go test -v
+        echo "tested successfully "
+  
+
