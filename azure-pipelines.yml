@@ -26,10 +26,10 @@ steps:
   inputs:
     script: |
       echo "setting environment Variables"
-      export ARM_CLIENT_ID=  "$(ARM_CLIENT_ID)"
-      export ARM_CLIENT_SECRET="$(ARM_CLIENT_SECRET)"
-      export ARM_SUBSCRIPTION_ID="$(ARM_SUBSCRIPTION_ID)"
-      export ARM_TENANT_ID="$(ARM_TENANT_ID)"
+      bash -c export ARM_CLIENT_ID=  "$(ARM_CLIENT_ID)"
+      bash -c export ARM_CLIENT_SECRET="$(ARM_CLIENT_SECRET)"
+      bash -c export ARM_SUBSCRIPTION_ID="$(ARM_SUBSCRIPTION_ID)"
+      bash -c export ARM_TENANT_ID="$(ARM_TENANT_ID)"
       echo "Environment Variables exported"
       echo "sub id"
       echo $ARM_SUBSCRIPTION_ID
@@ -58,7 +58,7 @@ steps:
       go mod tidy 
       az login -u "$(username)" -p "$(password)" 
       echo "exporting subscription id......."
-      export ARM_SUBSCRIPTION_ID="$(ARM_SUBSCRIPTION_ID)"
+      bash -c export ARM_SUBSCRIPTION_ID="$(ARM_SUBSCRIPTION_ID)"
       echo "exported"
       go test -v
       echo "tested successfully"
