@@ -61,7 +61,11 @@ steps:
       go mod tidy 
       az login -u "$(username)" -p "$(password)" 
       echo "exporting subscription id......."
-      bash -c export ARM_SUBSCRIPTION_ID="$(ARM_SUBSCRIPTION_ID)"
+      export MY_VARIABLE="my value"
+      export ARM_CLIENT_ID="$(ARM_CLIENT_ID)"
+      export ARM_CLIENT_SECRET="$(ARM_CLIENT_SECRET)"
+      export ARM_SUBSCRIPTION_ID="$(ARM_SUBSCRIPTION_ID)"
+      export ARM_TENANT_ID="$(ARM_TENANT_ID)"
       echo "exported"
       go test -v
       echo "tested successfully"
