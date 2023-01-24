@@ -16,11 +16,12 @@ steps:
 - task: GoTool@0
   inputs:
     version: '1.19.4'
+  displayName: 'Install Go Library'
 
 - task: TerraformInstaller@0
   inputs:
     terraformVersion: 'latest'
-
+  displayName: 'Install Terraform'
 - task: CmdLine@2
   inputs:
     script: |
@@ -30,6 +31,7 @@ steps:
       bash -c export ARM_SUBSCRIPTION_ID="$(ARM_SUBSCRIPTION_ID)"
       bash -c export ARM_TENANT_ID="$(ARM_TENANT_ID)"
       echo "Environment Variables exported"
+  displayName: 'Set Environment Variables'
 
 - task: CmdLine@2
   inputs:
@@ -38,6 +40,7 @@ steps:
       go mod init test 
       go mod tidy 
       az login -u "$(username)" -p "$(password)" 
+  displayName: 'Az LogIn'
 
 - task: CmdLine@2
   inputs:
@@ -50,6 +53,7 @@ steps:
       echo "tested successfully"
       go test -v
       echo "tested successfully"
+  displayName: 'go configuration'
 
 - task: CmdLine@2
   inputs:
@@ -58,6 +62,7 @@ steps:
       cd test
       go test -v
       echo "tested successfully"
+  displayName: 'go test'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
