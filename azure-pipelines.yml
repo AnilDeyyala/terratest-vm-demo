@@ -51,18 +51,9 @@ steps:
       az login -u "$(username)" -p "$(password)" 
       go test -v
       echo "tested successfully"
-      go test -v
-      echo "tested successfully"
-  displayName: 'go configuration'
-
-- task: CmdLine@2
-  inputs:
-    script: |
-      ls 
-      cd test
-      go test -v
-      echo "tested successfully"
   displayName: 'go test'
+
+
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
